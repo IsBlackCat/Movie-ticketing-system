@@ -1,0 +1,46 @@
+package traning2;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Pos {
+	Scanner sc = new Scanner(System.in);
+	List<String> p = new ArrayList<String>();
+	
+	public void initial() {
+		p.add("0A");p.add("0B");p.add("0C");p.add("0D");
+	}
+	public void addPos() {
+		System.out.println("请输入要添加的座位：");
+		p.add(sc.next());
+		System.out.println("添加成功！");
+	}
+	
+	public void delPos() {
+		System.out.println("请输入要删除的座位：");
+		p.remove(sc.next());
+		System.out.println("删除成功！");
+	}
+	//购票
+	public void sellPos(int index) {
+		String s = p.remove(index);
+		p.add("1"+s.substring(1));
+	}
+
+	
+	public boolean isSell(int index) {
+		if(p.get(index).indexOf("1") == -1) {
+			return false;
+		}
+		return true;
+	}
+	
+	public String printP(int index) {
+		if(p.get(index).charAt(0) == '1') {
+			return p.get(index).substring(1)+"(已售)";
+		}else {
+			return p.get(index).substring(1);
+		}
+	}
+}
